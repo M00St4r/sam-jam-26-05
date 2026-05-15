@@ -26,8 +26,9 @@ var current_state = STATE.IDLE
 
 var bodies: Array[Node3D]
 
-#lock cursor, make cursor invis:
+var energy: float = 50
 
+#lock cursor, make cursor invis
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -42,6 +43,14 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") && len(bodies) > 0:
 		var interactable = _get_closest_node(bodies)
 		interactable.interact()
+		
+	if Input.is_action_just_pressed("split"):
+		if energy > 100:
+			#Split
+			energy -= 100
+			print("split")
+		else:
+			print("not enough energy to split")
 	
 	match current_state:
 		STATE.IDLE:
@@ -109,6 +118,9 @@ func rotate_model(_last_move_dir, delta):
 	
 func process_jump():
 	velocity.y += jump_impulse
+	
+func add_energy(amount: float):
+	energy += amount
 	
 # Camera Look
 func _unhandled_input(event: InputEvent) -> void:

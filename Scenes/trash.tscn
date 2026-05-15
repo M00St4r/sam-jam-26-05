@@ -2,25 +2,29 @@
 
 [ext_resource type="Script" uid="uid://cad1t0egf6d6j" path="res://Classes/trash.gd" id="1_c2mmk"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0f350"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2mmk"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8c0lf"]
+[sub_resource type="BoxMesh" id="BoxMesh_tsx7w"]
 
-[node name="Trash" type="StaticBody3D" unique_id=1510160712]
+[sub_resource type="SphereShape3D" id="SphereShape3D_c2mmk"]
+radius = 0.939876
+
+[node name="Trash" type="RigidBody3D" unique_id=108464442 groups=["Trash"]]
 script = ExtResource("1_c2mmk")
+stored_energy = 100.0
 metadata/_custom_type_script = "uid://cad1t0egf6d6j"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218488773]
-shape = SubResource("BoxShape3D_0f350")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1093361115 groups=["Trash"]]
+shape = SubResource("BoxShape3D_c2mmk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=589891997]
-mesh = SubResource("BoxMesh_8c0lf")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1630217473 groups=["Trash"]]
+mesh = SubResource("BoxMesh_tsx7w")
 
-[node name="TrashArea" type="Area3D" parent="." unique_id=2102017759]
+[node name="TrashArea" type="Area3D" parent="." unique_id=557838712 groups=["Trash"]]
 unique_name_in_owner = true
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TrashArea" unique_id=453995774]
-shape = SubResource("BoxShape3D_0f350")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TrashArea" unique_id=533348561 groups=["Trash"]]
+shape = SubResource("SphereShape3D_c2mmk")
 
 [connection signal="area_entered" from="TrashArea" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="TrashArea" to="." method="_on_area_3d_body_entered"]

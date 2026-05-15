@@ -58,29 +58,29 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_ffjio"]
 radius = 1.602969
 
-[node name="slime" type="CharacterBody3D" unique_id=1204817859]
+[node name="slime" type="CharacterBody3D" unique_id=1204817859 groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_tcriy")
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=82664773]
+[node name="CameraPivot" type="Node3D" parent="." unique_id=82664773 groups=["Player"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=854696470]
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=854696470 groups=["Player"]]
 spring_length = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=708851439]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=708851439 groups=["Player"]]
 unique_name_in_owner = true
 current = true
 script = ExtResource("1_k84ui")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218373379]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218373379 groups=["Player"]]
 shape = SubResource("ConvexPolygonShape3D_tcriy")
 
-[node name="Armature" type="Node3D" parent="." unique_id=1433010579]
+[node name="Armature" type="Node3D" parent="." unique_id=1433010579 groups=["Player"]]
 unique_name_in_owner = true
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1121039150]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1121039150 groups=["Player"]]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1.1920929e-07, -5.9604645e-08, 1, 1, -1.1920929e-07, 5.9604645e-08, 5.9604645e-08, 1, 0, 0, 0, -1)
@@ -96,21 +96,21 @@ bones/1/position = Vector3(0, 1, 0)
 bones/1/rotation = Quaternion(-2.5121479e-15, -5.3385083e-08, -0.70710677, 0.70710677)
 bones/1/scale = Vector3(1, 1, 1)
 
-[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1336514037]
+[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1336514037 groups=["Player"]]
 mesh = SubResource("ArrayMesh_qgb16")
 skin = SubResource("Skin_hlcj7")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_3n180")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931822068]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931822068 groups=["Player"]]
 libraries/ = SubResource("AnimationLibrary_agke8")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=621280050]
+[node name="Area3D" type="Area3D" parent="." unique_id=621280050 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5380461, 0)
 collision_layer = 7
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=814113257]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=814113257 groups=["Player"]]
 shape = SubResource("SphereShape3D_ffjio")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
