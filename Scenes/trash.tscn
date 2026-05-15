@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cad1t0egf6d6j" path="res://Classes/trash.gd" id="1_c2mmk"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_c2mmk"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_tsx7w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tsx7w"]
 
@@ -10,12 +10,13 @@
 radius = 0.939876
 
 [node name="Trash" type="RigidBody3D" unique_id=108464442 groups=["Trash"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_c2mmk")
-stored_energy = 100.0
 metadata/_custom_type_script = "uid://cad1t0egf6d6j"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1093361115 groups=["Trash"]]
-shape = SubResource("BoxShape3D_c2mmk")
+shape = SubResource("SphereShape3D_tsx7w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1630217473 groups=["Trash"]]
 mesh = SubResource("BoxMesh_tsx7w")

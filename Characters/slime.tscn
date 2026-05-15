@@ -60,6 +60,7 @@ radius = 1.602969
 
 [node name="slime" type="CharacterBody3D" unique_id=1204817859 groups=["Player"]]
 collision_layer = 3
+collision_mask = 13
 script = ExtResource("1_tcriy")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=82664773 groups=["Player"]]
@@ -67,6 +68,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=854696470 groups=["Player"]]
+collision_mask = 133
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=708851439 groups=["Player"]]
@@ -97,6 +99,7 @@ bones/1/rotation = Quaternion(-2.5121479e-15, -5.3385083e-08, -0.70710677, 0.707
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1336514037 groups=["Player"]]
+unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_qgb16")
 skin = SubResource("Skin_hlcj7")
 skeleton = NodePath("..")

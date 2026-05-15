@@ -19,14 +19,15 @@ shader_parameter/albedo_texture = ExtResource("4_chixb")
 radius = 0.9477539
 height = 20.770996
 
-[node name="Pine" unique_id=1532107714 instance=ExtResource("1_iunh3")]
+[node name="Pine" unique_id=1532107714 groups=["World"] instance=ExtResource("1_iunh3")]
 
-[node name="Plane_001" parent="." index="0" unique_id=1729051908]
+[node name="Plane_001" parent="." index="0" unique_id=1729051908 groups=["World"]]
 surface_material_override/0 = SubResource("ShaderMaterial_iunh3")
 surface_material_override/1 = SubResource("ShaderMaterial_2aq1k")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1693063677]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1693063677 groups=["World"]]
+collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2117653326]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2117653326 groups=["World"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.385498, 0)
 shape = SubResource("CapsuleShape3D_iunh3")

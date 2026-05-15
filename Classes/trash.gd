@@ -15,20 +15,22 @@ var attacker
 @onready var isle_check = %TrashArea
 
 func interact():
-	#print(name + " got interacted with")
-	var player = get_tree().get_nodes_in_group("Player")[0] as Player
-	player.add_energy(stored_energy)
-	difficulty_manager.increase_difficulty(difficulty_gain)
-	queue_free()
+	pass
+	##print(name + " got interacted with")
+	#var player = get_tree().get_nodes_in_group("Player")[0] as Player
+	#player.add_energy(stored_energy)
+	#
+	#queue_free()
 	
 func _ready() -> void:
 	set_collision_layer_value(1, true)
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(3, true)
+	stored_energy = stored_energy * difficulty_manager.difficulty / 2
 
 func just_spawned():
 	stop = false
-	var circle_fac = randf()
+	var circle_fac = randf() * 2 * PI
 	var x = sin(circle_fac)
 	var z = cos(circle_fac)
 	global_position = Vector3(x,0,z) * spawn_dist
@@ -36,6 +38,7 @@ func just_spawned():
 	move_dir = -global_position.normalized()
 
 func _process(_delta: float) -> void:
+	move_dir = -global_position.normalized()
 	if !stop:
 		linear_velocity = move_dir * speed
 	else:
@@ -43,9 +46,19 @@ func _process(_delta: float) -> void:
 		angular_velocity = Vector3.ZERO
 	if hp <= 0:
 		if attacker:
+			#print("Energy: ", stored_energy)
 			attacker.add_energy(stored_energy)
 			attacker.target = null
+		difficulty_manager.increase_difficulty(difficulty_gain)
 		queue_free()
+	
+	if global_position.y < 0:
+		linear_velocity = linear_velocity + Vector3(0,5*_delta,0)
+	elif global_position.y > 0.5:
+		linear_velocity = linear_velocity - Vector3(0,5*_delta,0)
+	else:
+		linear_velocity += Vector3(0, linear_velocity.y * -0.2, 0)
+
 
 func damage(_amount: float, _attacker):
 	hp -= _amount
@@ -56,7 +69,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		stop = true
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Trash"):
-		if area.get_parent().stop == true:
-			stop = true
+func _on_area_3d_area_entered(_area: Area3D) -> void:
+	#if area.is_in_group("Trash"):
+		#if area.get_parent().stop == true:
+			#stop = true
+	pass

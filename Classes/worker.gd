@@ -7,9 +7,14 @@ class_name Worker
 @export var req_level_up_energy: float = 100
 @export var level = 1
 
+@export var normal_color: Color = Color(0.0, 0.451, 1.0, 1.0)
+@export var energized_color: Color = Color(0.0, 1.0, 0.761, 1.0)
+
 @onready var collider = %WorkerCollider as CollisionShape3D
 @onready var armature = %Armature as Node3D
 @onready var worker_area = %WorkerArea as Area3D
+@onready var _anim_player = %AnimationPlayer as AnimationPlayer
+@onready var mesh := %Icosphere as MeshInstance3D
 
 var trash_in_range: Array[Trash]
 
@@ -22,13 +27,26 @@ var work_timer: Timer = Timer.new()
 enum STATE {IDLE, WORK}
 var current_state = STATE.IDLE
 
+@onready var ground_check = %RayCast3D
+var on_ground: bool = false
+
 func _ready() -> void:
+	set_size()
 	pass
 	
 
 func _process(_delta: float) -> void:
-	
+	if not on_ground:
+		if ground_check.is_colliding():
+			global_position = ground_check.get_collision_point()
+			ground_check.queue_free()
+			on_ground = true
+
 	set_size()
+	
+	set_color()
+	
+	_anim_player.play("idle")
 	
 	match current_state:
 		STATE.IDLE:
@@ -44,14 +62,23 @@ func _process(_delta: float) -> void:
 			else:
 				work(_delta)
 
+func interact():
+	get_tree().get_first_node_in_group("Player").add_energy(stored_energy)
+	stored_energy = 0
+
+func set_color():
+	var mat = mesh.get_active_material(0) as StandardMaterial3D
+	mat.albedo_color = lerp(normal_color, energized_color, stored_energy/req_level_up_energy)
+
 func level_up():
-	# use energy
-	stored_energy -= req_level_up_energy
-	# update stats
-	work_speed += work_speed / level
-	max_energy += max_energy / level
-	req_level_up_energy = max_energy * 0.75
-	hp += hp * level/2
+	if stored_energy > req_level_up_energy:
+		# use energy
+		stored_energy -= req_level_up_energy
+		# update stats
+		work_speed += work_speed / level
+		max_energy += max_energy / level
+		req_level_up_energy = max_energy * 0.75
+		hp += hp * level/2
 	
 func give_energy():
 	get_tree().get_first_node_in_group("Player").add_energy(stored_energy)
@@ -59,9 +86,9 @@ func give_energy():
 
 func set_size():
 	if stored_energy > 0:
-		var fac = stored_energy/100 - 1
-		collider.scale = Vector3.ONE * (1 + fac)
-		armature.scale = Vector3.ONE * (1 + fac)
+		var fac = (stored_energy/req_level_up_energy) * 0.75
+		collider.scale = Vector3.ONE * (0.5 + fac)
+		armature.scale = Vector3.ONE * (0.5 + fac)
 
 func work(_delta: float):
 	if !target:

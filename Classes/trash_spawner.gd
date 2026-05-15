@@ -24,6 +24,12 @@ func _process(_delta: float) -> void:
 
 func spawn_trash(burst: int) -> void:
 	for spawn in burst:
-		var trash_spawn = trash[randi_range(0,len(trash)-1)].duplicate()
-		add_child(trash_spawn)
-		trash_spawn.just_spawned()
+		var trash_scene = load("res://Scenes/trash.tscn")
+		var trash_instance = trash_scene.instantiate()
+		# Add the instance to the current node (or any parent node)
+		get_parent().add_child(trash_instance)
+		trash_instance.global_position = Vector3(0,-10,0)
+		
+		#var trash_spawn = trash[randi_range(0,len(trash)-1)].duplicate()
+		#add_child(trash_spawn)
+		trash_instance.just_spawned()

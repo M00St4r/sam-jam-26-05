@@ -2,17 +2,19 @@ extends Control
 
 var is_paused: bool
 
+@onready var pause = %Pause
+
 func _ready() -> void:
-	visible = false
+	pause.visible = false
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause"):
 		if is_paused:
-			visible = false
+			pause.visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			#get_tree().paused = false
 		else:
-			visible = true
+			pause.visible = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			#get_tree().paused = true
 		is_paused = !is_paused
@@ -34,4 +36,4 @@ func _pause():
 	is_paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#get_tree().paused = false
-	visible = false
+	pause.visible = false

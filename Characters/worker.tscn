@@ -58,6 +58,8 @@ _data = {
 radius = 2.416325
 
 [node name="Worker" type="StaticBody3D" unique_id=1388022637 groups=["NPC"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_7kbl1")
 
 [node name="WorkerCollider" type="CollisionShape3D" parent="." unique_id=573251023 groups=["NPC"]]
@@ -84,12 +86,14 @@ bones/1/rotation = Quaternion(-2.5121479e-15, -5.3385083e-08, -0.70710677, 0.707
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1288941211 groups=["NPC"]]
+unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_00k4y")
 skin = SubResource("Skin_3a44l")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cmrb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=829194734 groups=["NPC"]]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_pnhnk")
 
 [node name="WorkerArea" type="Area3D" parent="." unique_id=959528825 groups=["NPC"]]
@@ -100,3 +104,7 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorkerArea" unique_id=1026259700 groups=["NPC"]]
 shape = SubResource("SphereShape3D_24uko")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1502388068]
+unique_name_in_owner = true
+target_position = Vector3(0, -100, 0)
