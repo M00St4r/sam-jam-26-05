@@ -22,6 +22,8 @@ mesh = SubResource("BoxMesh_tsx7w")
 
 [node name="TrashArea" type="Area3D" parent="." unique_id=557838712 groups=["Trash"]]
 unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="TrashArea" unique_id=533348561 groups=["Trash"]]
 shape = SubResource("SphereShape3D_c2mmk")

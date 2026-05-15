@@ -41,14 +41,23 @@ func _process(delta: float) -> void:
 	
 	#Interaction
 	if Input.is_action_just_pressed("interact") && len(bodies) > 0:
+		update_overlap()
 		var interactable = _get_closest_node(bodies)
-		interactable.interact()
+		if interactable:
+			interactable.interact()
 		
 	if Input.is_action_just_pressed("split"):
 		if energy > 100:
 			#Split
 			energy -= 100
-			print("split")
+			var worker_spawn_pos = global_position
+			global_position = global_position + transform.basis.z * 2
+			process_jump()
+			var worker = load("res://Characters/worker.tscn")
+			var worker_instance = worker.instantiate()
+			# Add the instance to the current node (or any parent node)
+			get_parent().add_child(worker_instance)
+			worker_instance.global_position = worker_spawn_pos
 		else:
 			print("not enough energy to split")
 	
@@ -121,6 +130,7 @@ func process_jump():
 	
 func add_energy(amount: float):
 	energy += amount
+	print(energy)
 	
 # Camera Look
 func _unhandled_input(event: InputEvent) -> void:
@@ -136,6 +146,9 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 	#print(bodies)
 
 func _on_area_3d_body_exited(_body: Node3D) -> void:
+	bodies = interact_area.get_overlapping_bodies()
+
+func update_overlap():
 	bodies = interact_area.get_overlapping_bodies()
 
 func _get_closest_node(nodes: Array[Node3D]) -> Node3D:

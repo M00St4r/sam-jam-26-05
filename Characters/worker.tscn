@@ -1,20 +1,19 @@
-[gd_scene format=4 uid="uid://6urexnl2pfkc"]
+[gd_scene format=4 uid="uid://do03edlkh0sl7"]
 
-[ext_resource type="Script" uid="uid://blbdgqjej3gom" path="res://Characters/camera_rig.gd" id="1_k84ui"]
-[ext_resource type="Script" uid="uid://cc3ec5deuqfrb" path="res://Classes/player.gd" id="1_tcriy"]
-[ext_resource type="Animation" uid="uid://ybqa6he4e1wh" path="res://Import/idle.res" id="3_ffjio"]
-[ext_resource type="Animation" uid="uid://0merwsmhm6ue" path="res://Import/jump.res" id="4_wbvw3"]
-[ext_resource type="Animation" uid="uid://bftkiki3vw1se" path="res://Import/land.res" id="5_rs03m"]
-[ext_resource type="Animation" uid="uid://31twjiynd6pj" path="res://Import/move.res" id="6_skmeb"]
+[ext_resource type="Script" uid="uid://b51gewbmdrjuj" path="res://Classes/worker.gd" id="1_7kbl1"]
+[ext_resource type="Animation" uid="uid://ybqa6he4e1wh" path="res://Import/idle.res" id="2_p38s5"]
+[ext_resource type="Animation" uid="uid://0merwsmhm6ue" path="res://Import/jump.res" id="3_3qveh"]
+[ext_resource type="Animation" uid="uid://bftkiki3vw1se" path="res://Import/land.res" id="4_ca3ot"]
+[ext_resource type="Animation" uid="uid://31twjiynd6pj" path="res://Import/move.res" id="5_r0ip0"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tcriy"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vofx3"]
 points = PackedVector3Array(0.95105785, 0.42615172, 0.30892718, 0.8505153, 0.11649205, 5.9604645e-08, 0.95105785, 0.42615172, -0.30912286, 0.8942699, 0.77741706, 5.9604645e-08, 0.68815774, 0.8462017, 0.49980426, 0.5876152, 0.42615172, 0.8089272, 0.7235338, 0.15423343, 0.5256461, 0.42525762, 0.002108613, 0.30892718, 0.42525762, 0.002108613, -0.30912286, 0.7235338, 0.15423343, -0.5258417, 0.5876152, 0.42615172, -0.80912286, 0.68815774, 0.8462017, -0.4999999, 0.52561396, 1.1509666, 5.9604645e-08, 0.16235751, 1.1509666, 0.49980426, 0.27630574, 0.77741706, 0.85062647, 0, 0.42615172, 1, 0.26271385, 0.11649205, 0.8089272, -0.16254377, 0.002108613, 0.49980426, 0, -0.015924811, 5.9604645e-08, -0.16254377, 0.002108613, -0.4999999, 0.26271385, 0.11649205, -0.80912286, 0, 0.42615172, -0.9999999, 0.27630574, 0.77741706, -0.85082215, 0.16235751, 1.1509666, -0.4999999, 0, 1.3, 5.9604645e-08, -0.2629001, 0.8462017, 0.8089272, -0.4254439, 1.1509666, 0.30892718, -0.58780146, 0.42615172, 0.8089272, -0.276492, 0.15423343, 0.85062647, -0.68834394, 0.11649205, 0.49980426, -0.5258002, 0.002108613, 5.9604645e-08, -0.68834394, 0.11649205, -0.4999999, -0.276492, 0.15423343, -0.85082215, -0.58780146, 0.42615172, -0.80912286, -0.2629001, 0.8462017, -0.80912286, -0.4254439, 1.1509666, -0.30912286, -0.72372, 0.77741706, 0.5256461, -0.8507015, 0.8462017, 5.9604645e-08, -0.95105785, 0.42615172, 0.30892718, -0.89445615, 0.15423343, 5.9604645e-08, -0.95105785, 0.42615172, -0.30912286, -0.72372, 0.77741706, -0.5258417)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao5bf"]
 resource_name = "Material.001"
 cull_mode = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qgb16"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_00k4y"]
 resource_name = "slime_Icosphere"
 _surfaces = [{
 "aabb": AABB(-0.95105785, -0.015924811, -0.9999999, 1.9021157, 1.3159248, 1.9999999),
@@ -34,7 +33,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_hlcj7"]
+[sub_resource type="Skin" id="Skin_3a44l"]
 resource_name = "Skin"
 bind_count = 2
 bind/0/name = &"Root"
@@ -44,43 +43,31 @@ bind/1/name = &"Spine"
 bind/1/bone = -1
 bind/1/pose = Transform3D(7.54979e-08, 0, -1, 4.30333e-22, 1, -5.6999333e-15, 1, 0, 7.54979e-08, 0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n180"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cmrb"]
 albedo_color = Color(0, 0.4509804, 1, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_agke8"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnhnk"]
 _data = {
-&"idle": ExtResource("3_ffjio"),
-&"jump": ExtResource("4_wbvw3"),
-&"land": ExtResource("5_rs03m"),
-&"move": ExtResource("6_skmeb")
+&"idle": ExtResource("2_p38s5"),
+&"jump": ExtResource("3_3qveh"),
+&"land": ExtResource("4_ca3ot"),
+&"move": ExtResource("5_r0ip0")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ffjio"]
-radius = 1.602969
+[sub_resource type="SphereShape3D" id="SphereShape3D_24uko"]
+radius = 2.416325
 
-[node name="slime" type="CharacterBody3D" unique_id=1204817859 groups=["Player"]]
-collision_layer = 3
-script = ExtResource("1_tcriy")
+[node name="Worker" type="StaticBody3D" unique_id=1388022637 groups=["NPC"]]
+script = ExtResource("1_7kbl1")
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=82664773 groups=["Player"]]
+[node name="WorkerCollider" type="CollisionShape3D" parent="." unique_id=573251023 groups=["NPC"]]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("ConvexPolygonShape3D_vofx3")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=854696470 groups=["Player"]]
-spring_length = 5.0
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=708851439 groups=["Player"]]
-unique_name_in_owner = true
-current = true
-script = ExtResource("1_k84ui")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218373379 groups=["Player"]]
-shape = SubResource("ConvexPolygonShape3D_tcriy")
-
-[node name="Armature" type="Node3D" parent="." unique_id=1433010579 groups=["Player"]]
+[node name="Armature" type="Node3D" parent="." unique_id=598037835 groups=["NPC"]]
 unique_name_in_owner = true
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1121039150 groups=["Player"]]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=56083602 groups=["NPC"]]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1.1920929e-07, -5.9604645e-08, 1, 1, -1.1920929e-07, 5.9604645e-08, 5.9604645e-08, 1, 0, 0, 0, -1)
@@ -96,22 +83,20 @@ bones/1/position = Vector3(0, 1, 0)
 bones/1/rotation = Quaternion(-2.5121479e-15, -5.3385083e-08, -0.70710677, 0.70710677)
 bones/1/scale = Vector3(1, 1, 1)
 
-[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1336514037 groups=["Player"]]
-mesh = SubResource("ArrayMesh_qgb16")
-skin = SubResource("Skin_hlcj7")
+[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1288941211 groups=["NPC"]]
+mesh = SubResource("ArrayMesh_00k4y")
+skin = SubResource("Skin_3a44l")
 skeleton = NodePath("..")
-surface_material_override/0 = SubResource("StandardMaterial3D_3n180")
+surface_material_override/0 = SubResource("StandardMaterial3D_0cmrb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931822068 groups=["Player"]]
-libraries/ = SubResource("AnimationLibrary_agke8")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=829194734 groups=["NPC"]]
+libraries/ = SubResource("AnimationLibrary_pnhnk")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=621280050 groups=["Player"]]
+[node name="WorkerArea" type="Area3D" parent="." unique_id=959528825 groups=["NPC"]]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5380461, 0)
-collision_layer = 7
+collision_layer = 6
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=814113257 groups=["Player"]]
-shape = SubResource("SphereShape3D_ffjio")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorkerArea" unique_id=1026259700 groups=["NPC"]]
+shape = SubResource("SphereShape3D_24uko")
