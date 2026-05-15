@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://copcu7n1ifcrt"]
+
+[ext_resource type="PackedScene" uid="uid://cy4b7xvsefvx" path="res://Import/slime.glb" id="1_rx1e1"]
+
+[node name="slime" unique_id=2146940216 instance=ExtResource("1_rx1e1")]

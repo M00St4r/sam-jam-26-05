@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dgrdo252pu7ne"]
+
+[ext_resource type="Script" uid="uid://ralv0krjhwql" path="res://scripts/menus/main_menu.gd" id="1_1rerr"]
+
+[node name="Menu" type="Control" unique_id=1997992170]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rerr")
+
+[node name="Control" type="Control" parent="." unique_id=362198857]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=698988700]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -29.0
+offset_right = 36.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer" unique_id=728231223]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer" unique_id=351424539]
+layout_mode = 2
+text = "Odd Place"
+horizontal_alignment = 1
+
+[node name="BStart" type="Button" parent="Control/HBoxContainer/VBoxContainer" unique_id=1368438544]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start"
+
+[node name="BQuit" type="Button" parent="Control/HBoxContainer/VBoxContainer" unique_id=885670201]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Quit"
+
+[connection signal="button_down" from="Control/HBoxContainer/VBoxContainer/BStart" to="." method="start"]
+[connection signal="button_down" from="Control/HBoxContainer/VBoxContainer/BQuit" to="." method="quit"]

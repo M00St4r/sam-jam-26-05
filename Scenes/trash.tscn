@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://k7vxm4vdn0mp"]
+
+[ext_resource type="Script" uid="uid://cad1t0egf6d6j" path="res://Classes/trash.gd" id="1_c2mmk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0f350"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8c0lf"]
+
+[node name="Trash" type="StaticBody3D" unique_id=1510160712]
+script = ExtResource("1_c2mmk")
+metadata/_custom_type_script = "uid://cad1t0egf6d6j"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218488773]
+shape = SubResource("BoxShape3D_0f350")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=589891997]
+mesh = SubResource("BoxMesh_8c0lf")
+
+[node name="TrashArea" type="Area3D" parent="." unique_id=2102017759]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TrashArea" unique_id=453995774]
+shape = SubResource("BoxShape3D_0f350")
+
+[connection signal="area_entered" from="TrashArea" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="TrashArea" to="." method="_on_area_3d_body_entered"]

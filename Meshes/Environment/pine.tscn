@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://chtivyi5311go"]
+
+[ext_resource type="PackedScene" uid="uid://cgdmfyf7wqsb4" path="res://Import/Pine.glb" id="1_iunh3"]
+[ext_resource type="Shader" uid="uid://425mst152o13" path="res://Tree.gdshader" id="2_gb7mk"]
+[ext_resource type="Texture2D" uid="uid://bdem4vhew0o41" path="res://Textures/Environment/Pine.png" id="3_1vijr"]
+[ext_resource type="Texture2D" uid="uid://dvefwllecp2je" path="res://Textures/Environment/PineTop.png" id="4_chixb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iunh3"]
+render_priority = 0
+shader = ExtResource("2_gb7mk")
+shader_parameter/albedo_texture = ExtResource("3_1vijr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2aq1k"]
+render_priority = 0
+shader = ExtResource("2_gb7mk")
+shader_parameter/albedo_texture = ExtResource("4_chixb")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iunh3"]
+radius = 0.9477539
+height = 20.770996
+
+[node name="Pine" unique_id=1532107714 instance=ExtResource("1_iunh3")]
+
+[node name="Plane_001" parent="." index="0" unique_id=1729051908]
+surface_material_override/0 = SubResource("ShaderMaterial_iunh3")
+surface_material_override/1 = SubResource("ShaderMaterial_2aq1k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1693063677]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2117653326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.385498, 0)
+shape = SubResource("CapsuleShape3D_iunh3")

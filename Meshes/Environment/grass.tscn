@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://0osk4enntstu"]
+
+[ext_resource type="PackedScene" uid="uid://cv8ohvqouvuy1" path="res://Import/Grass.glb" id="1_lkddb"]
+[ext_resource type="Shader" uid="uid://b5uyc137pri2j" path="res://grass.gdshader" id="2_nt8v1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0278"]
+render_priority = 0
+shader = ExtResource("2_nt8v1")
+shader_parameter/albedo_color = Color(0.5176471, 0.69411767, 0.4745098, 1)
+shader_parameter/amplitude = 0.01
+shader_parameter/frequency = 2.0
+shader_parameter/speed = 1.0
+
+[node name="Grass" unique_id=297373997 instance=ExtResource("1_lkddb")]
+
+[node name="GrassPatch01" parent="." index="0" unique_id=587979395]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_o0278")

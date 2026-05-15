@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://5rc35qj46kdi"]
+
+[ext_resource type="Texture2D" uid="uid://deanne0t3lv1" path="res://Textures/Environment/Water.png" id="1_u6c56"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_u6c56")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(50, 50, 50)
+texture_filter = 2
