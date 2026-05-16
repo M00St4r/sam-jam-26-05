@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://4203kqkywvu7"]
+
+[ext_resource type="PackedScene" uid="uid://5pmxgtgdf1nc" path="res://Import/GachaContainer.glb" id="1_ixnqs"]
+[ext_resource type="Material" uid="uid://cfgsxbkkxyrj1" path="res://MatGachaBase.tres" id="2_5pvvs"]
+[ext_resource type="Material" uid="uid://cadk488xtxs1j" path="res://MatGachaBall.tres" id="3_7rmr2"]
+[ext_resource type="Material" uid="uid://dh2snuj6yh7t1" path="res://MatGachaContainer.tres" id="4_76o1b"]
+[ext_resource type="PackedScene" uid="uid://ci0fiw23p14fh" path="res://gacha_fill.tscn" id="5_7rmr2"]
+[ext_resource type="Script" uid="uid://td4qgagolqvb" path="res://gacha_container.gd" id="6_76o1b"]
+[ext_resource type="Script" uid="uid://burbqyo8nxubn" path="res://Effects/less_range_effect.gd" id="7_cojqv"]
+[ext_resource type="Script" uid="uid://djpfm0224msw5" path="res://Effects/more_range_effect.gd" id="8_qf8wi"]
+[ext_resource type="Script" uid="uid://bd1l1i2k2mcl5" path="res://Effects/faster_effect.gd" id="9_aajlp"]
+[ext_resource type="Script" uid="uid://o6t24f5foiws" path="res://Effects/slower_effect.gd" id="10_ud2hb"]
+[ext_resource type="Script" uid="uid://b3pjhghyicisv" path="res://Effects/more_energy_effect.gd" id="11_0pvfk"]
+[ext_resource type="Script" uid="uid://bklqbcdkl7drj" path="res://Effects/less_energy_effect.gd" id="12_jjky8"]
+[ext_resource type="FontFile" uid="uid://ced7lo0mr7vc4" path="res://Import/Pix32.ttf" id="13_jjky8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_76o1b"]
+radius = 1.0
+height = 3.0
+
+[node name="GachaContainer" unique_id=1590606973 instance=ExtResource("1_ixnqs")]
+
+[node name="Container" parent="." index="0" unique_id=1913699633]
+surface_material_override/0 = ExtResource("2_5pvvs")
+surface_material_override/1 = ExtResource("3_7rmr2")
+surface_material_override/2 = ExtResource("4_76o1b")
+
+[node name="GachaFill" parent="." index="1" unique_id=505039203 instance=ExtResource("5_7rmr2")]
+unique_name_in_owner = true
+
+[node name="GachaCollider" type="StaticBody3D" parent="." index="2" unique_id=302983110 node_paths=PackedStringArray("effects")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_76o1b")
+effects = NodePath("../Effects")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GachaCollider" index="0" unique_id=632305080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_76o1b")
+
+[node name="Effects" type="Node" parent="." index="3" unique_id=544286003]
+
+[node name="LessRangeEffect" type="Node" parent="Effects" index="0" unique_id=153567441]
+script = ExtResource("7_cojqv")
+metadata/_custom_type_script = "uid://burbqyo8nxubn"
+
+[node name="MoreRangeEffect" type="Node" parent="Effects" index="1" unique_id=105822312]
+script = ExtResource("8_qf8wi")
+metadata/_custom_type_script = "uid://djpfm0224msw5"
+
+[node name="FasterEffect" type="Node" parent="Effects" index="2" unique_id=381034899]
+script = ExtResource("9_aajlp")
+metadata/_custom_type_script = "uid://bd1l1i2k2mcl5"
+
+[node name="SlowerEffect" type="Node" parent="Effects" index="3" unique_id=1280574671]
+script = ExtResource("10_ud2hb")
+metadata/_custom_type_script = "uid://o6t24f5foiws"
+
+[node name="MoreEnergyEffect" type="Node" parent="Effects" index="4" unique_id=949855408]
+script = ExtResource("11_0pvfk")
+metadata/_custom_type_script = "uid://b3pjhghyicisv"
+
+[node name="LessEnergyEffect" type="Node" parent="Effects" index="5" unique_id=457414575]
+script = ExtResource("12_jjky8")
+metadata/_custom_type_script = "uid://bklqbcdkl7drj"
+
+[node name="GachaDisplay" type="Label3D" parent="." index="4" unique_id=1712059687]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.2091718)
+render_priority = 127
+text = "
+"
+font = ExtResource("13_jjky8")
+font_size = 110

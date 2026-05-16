@@ -45,7 +45,8 @@ bind/1/bone = -1
 bind/1/pose = Transform3D(7.54979e-08, 0, -1, 4.30333e-22, 1, -5.6999333e-15, 1, 0, 7.54979e-08, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n180"]
-albedo_color = Color(0, 0.4509804, 1, 1)
+transparency = 1
+albedo_color = Color(0, 0.4509804, 1, 0.46666667)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_agke8"]
 _data = {
@@ -58,10 +59,18 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_ffjio"]
 radius = 1.602969
 
+[sub_resource type="SphereMesh" id="SphereMesh_ffjio"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffjio"]
+transparency = 1
+albedo_color = Color(0.07446206, 0.7202433, 0.74444526, 0.5058824)
+
 [node name="slime" type="CharacterBody3D" unique_id=1204817859 groups=["Player"]]
 collision_layer = 3
 collision_mask = 13
 script = ExtResource("1_tcriy")
+normal_color = Color(0, 0.4509804, 1, 0.49019608)
+energized_color = Color(0, 1, 0.7607843, 0.49019608)
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=82664773 groups=["Player"]]
 unique_name_in_owner = true
@@ -115,6 +124,14 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=814113257 groups=["Player"]]
 shape = SubResource("SphereShape3D_ffjio")
+
+[node name="EnergyCore" type="Node3D" parent="." unique_id=1674875200 groups=["Player"]]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnergyCore" unique_id=241899691 groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_ffjio")
+surface_material_override/0 = SubResource("StandardMaterial3D_ffjio")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

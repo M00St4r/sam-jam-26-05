@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ci0fiw23p14fh"]
+
+[ext_resource type="PackedScene" uid="uid://dld8npk0m8byt" path="res://Import/GachaFill.glb" id="1_ju2ks"]
+[ext_resource type="Material" uid="uid://dc6v60xwqnykh" path="res://MatGachaFill.tres" id="2_s7wx6"]
+
+[node name="GachaFill" unique_id=505039203 instance=ExtResource("1_ju2ks")]
+
+[node name="Fill" parent="." index="0" unique_id=728020963]
+material_override = ExtResource("2_s7wx6")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dgrdo252pu7ne"]
 
 [ext_resource type="Script" uid="uid://ralv0krjhwql" path="res://scripts/menus/main_menu.gd" id="1_1rerr"]
+[ext_resource type="FontFile" uid="uid://ced7lo0mr7vc4" path="res://Import/Pix32.ttf" id="2_xhh6f"]
 
 [node name="Menu" type="Control" unique_id=1997992170]
 layout_mode = 3
@@ -38,17 +39,21 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer" unique_id=351424539]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xhh6f")
+theme_override_font_sizes/font_size = 25
 text = "Odd Place"
 horizontal_alignment = 1
 
 [node name="BStart" type="Button" parent="Control/HBoxContainer/VBoxContainer" unique_id=1368438544]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_xhh6f")
 text = "Start"
 
 [node name="BQuit" type="Button" parent="Control/HBoxContainer/VBoxContainer" unique_id=885670201]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_xhh6f")
 text = "Quit"
 
 [connection signal="button_down" from="Control/HBoxContainer/VBoxContainer/BStart" to="." method="start"]

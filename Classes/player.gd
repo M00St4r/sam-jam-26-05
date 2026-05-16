@@ -7,6 +7,7 @@ class_name Player
 @onready var _anim_player := $AnimationPlayer as AnimationPlayer
 @onready var interact_area := $Area3D as Area3D
 @onready var mesh := %Icosphere as MeshInstance3D
+@onready var energy_core := %EnergyCore as Node3D
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.01
@@ -41,6 +42,8 @@ var energy_required_for_split:float = 100
 @export var work_speed = 35
 @export var split_lvl_factor: float = 0.3
 
+var interact_hints: String
+
 #lock cursor, make cursor invis
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -49,10 +52,13 @@ func _process(delta: float) -> void:
 		
 	move_and_slide()
 	
+	update_interact_hints()
 	#process_pause()
 	process_movement(delta)
 	
-	set_color()
+	#set_color()
+	
+	set_core_size()
 	
 	if Input.is_action_pressed("attack"):
 		update_overlap()
@@ -135,10 +141,36 @@ func _process(delta: float) -> void:
 		#else:
 			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		#paused = !paused
+		
+func update_interact_hints():
+	update_overlap()
+	if len(bodies) > 0:
+		var body = _get_closest_node(bodies)
+		if body is Trash:
+			interact_hints = "LMouse to decompose Trash"
+		if body is Worker:
+			if body.stored_energy > body.req_level_up_energy:
+				interact_hints = "E to level up Worker | F to collect Energy"
+			elif body.stored_energy > 0:
+				interact_hints = "F to collect Energy"
+		if body is GachaMachine:
+			interact_hints = "F to deposit 10 energy"
+		
+		#if body is not GachaMachine or not Worker or not Trash:
+			#interact_hints = ""
+	else:
+		interact_hints = ""
+	
+func get_interact_hints() -> String:
+	return interact_hints
 
 func get_bar_value() -> float:
 	return (energy / energy_required_for_split) * 100
 
+func set_core_size():
+	var size = energy / energy_required_for_split
+	energy_core.scale = (Vector3.ONE * size).clamp(Vector3.ZERO,Vector3.ONE)
+	
 func set_color():
 	var mat = mesh.get_active_material(0) as StandardMaterial3D
 	mat.albedo_color = lerp(normal_color, energized_color, energy/(energy_required_for_split+50))
@@ -174,7 +206,10 @@ func process_jump():
 func add_energy(amount: float):
 	energy += amount
 	#print(energy)
-	
+
+func get_energy() -> float:
+	return energy
+
 # Camera Look
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

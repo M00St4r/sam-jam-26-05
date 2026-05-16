@@ -5,16 +5,21 @@ class_name Worker
 @export var hp: float = 100
 @export var stored_energy: float = 0
 @export var req_level_up_energy: float = 100
-@export var level = 1
+@export var level: int = 1
+@export var energy_multiplayer: float = 1
 
 @export var normal_color: Color = Color(0.0, 0.451, 1.0, 1.0)
 @export var energized_color: Color = Color(0.0, 1.0, 0.761, 1.0)
 
-@onready var collider = %WorkerCollider as CollisionShape3D
-@onready var armature = %Armature as Node3D
-@onready var worker_area = %WorkerArea as Area3D
-@onready var _anim_player = %AnimationPlayer as AnimationPlayer
+@onready var collider := %WorkerCollider as CollisionShape3D
+@onready var armature := %Armature as Node3D
+@onready var worker_area := %WorkerArea as Area3D
+@onready var worker_area_vis := %AreaVis as MeshInstance3D
+@onready var _anim_player := %AnimationPlayer as AnimationPlayer
 @onready var mesh := %Icosphere as MeshInstance3D
+@onready var level_up_indicator := %LevelUpIndicator as MeshInstance3D
+@onready var energy_tank := %EnergyTank as Node3D
+@onready var level_text := %LevelText as Label3D
 
 var trash_in_range: Array[Trash]
 
@@ -31,8 +36,9 @@ var current_state = STATE.IDLE
 var on_ground: bool = false
 
 func _ready() -> void:
-	set_size()
-	pass
+	#set_size()
+	level_up_indicator.visible = false
+	level_text.text = str(level)
 	
 
 func _process(_delta: float) -> void:
@@ -41,10 +47,10 @@ func _process(_delta: float) -> void:
 			global_position = ground_check.get_collision_point()
 			ground_check.queue_free()
 			on_ground = true
-
-	set_size()
 	
-	set_color()
+	set_tank_size()
+	
+	#set_color()
 	
 	_anim_player.play("idle")
 	
@@ -61,6 +67,15 @@ func _process(_delta: float) -> void:
 				current_state = STATE.IDLE
 			else:
 				work(_delta)
+		
+	if stored_energy > req_level_up_energy:
+		level_up_indicator.visible = true
+	else:
+		level_up_indicator.visible = false
+
+func add_area_size(_amount:float):
+	worker_area.scale += Vector3.ONE * _amount
+	worker_area_vis.scale += Vector3.ONE * _amount
 
 func interact():
 	get_tree().get_first_node_in_group("Player").add_energy(stored_energy)
@@ -72,6 +87,7 @@ func set_color():
 
 func level_up():
 	if stored_energy > req_level_up_energy:
+		level += 1
 		# use energy
 		stored_energy -= req_level_up_energy
 		# update stats
@@ -79,16 +95,15 @@ func level_up():
 		max_energy += max_energy / level
 		req_level_up_energy = max_energy * 0.75
 		hp += hp * level/2
-	
+		level_text.text = str(level)
+	#################################################################
 func give_energy():
 	get_tree().get_first_node_in_group("Player").add_energy(stored_energy)
 	stored_energy = 0
 
-func set_size():
-	if stored_energy > 0:
-		var fac = (stored_energy/req_level_up_energy) * 0.75
-		collider.scale = Vector3.ONE * (0.5 + fac)
-		armature.scale = Vector3.ONE * (0.5 + fac)
+func set_tank_size():
+	var fac = (stored_energy / max_energy) * 1.25
+	energy_tank.scale = Vector3.ONE * fac
 
 func work(_delta: float):
 	if !target:
@@ -101,7 +116,7 @@ func find_target():
 		target = _get_closest_trash(trash_in_range)
 
 func add_energy(_amount: float):
-	stored_energy += _amount
+	stored_energy += _amount * energy_multiplayer
 
 func update_overlap():
 	var areas = worker_area.get_overlapping_areas()

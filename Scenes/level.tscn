@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://bx43km12ttdh7"]
 
 [ext_resource type="PackedScene" uid="uid://stio6jsfhudc" path="res://Meshes/Environment/island.tscn" id="1_81xng"]
+[ext_resource type="FontFile" uid="uid://ced7lo0mr7vc4" path="res://Import/Pix32.ttf" id="2_ha31o"]
 [ext_resource type="Script" uid="uid://crcunh84fgkl2" path="res://Scenes/energy_bar.gd" id="2_oqgf2"]
+[ext_resource type="Script" uid="uid://dumkyd4afiv2v" path="res://Scenes/display_hints.gd" id="2_qxfql"]
 [ext_resource type="Material" uid="uid://5rc35qj46kdi" path="res://Materials/Environment/WaterMaterial.tres" id="2_wqkje"]
 [ext_resource type="Script" uid="uid://xx6c2lxcqui5" path="res://scripts/menus/pause.gd" id="4_8c0lf"]
 [ext_resource type="Script" uid="uid://dc5p2xegeflhu" path="res://scripts/CharacterSpawn.gd" id="5_wqkje"]
 [ext_resource type="PackedScene" uid="uid://0osk4enntstu" path="res://Meshes/Environment/grass.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://chtivyi5311go" path="res://Meshes/Environment/pine.tscn" id="6_8c0lf"]
-[ext_resource type="Script" uid="uid://k08lpf51ow3s" path="res://Classes/interactable.gd" id="7_8c0lf"]
 [ext_resource type="Script" uid="uid://dpe8lt65jgp8j" path="res://Classes/trash_spawner.gd" id="9_oqgf2"]
 [ext_resource type="Script" uid="uid://cptveddrdlrvs" path="res://Classes/difficulty_manager.gd" id="10_oqgf2"]
+[ext_resource type="PackedScene" uid="uid://4203kqkywvu7" path="res://gacha_container.tscn" id="13_pa6b8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqgf2"]
 sky_top_color = Color(0.45835274, 0.7765081, 0.85259205, 1)
@@ -29,10 +31,6 @@ tonemap_mode = 2
 size = Vector3(1, 0.001, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oi3di"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0f350"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8c0lf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqgf2"]
 size = Vector3(21, 28, 1)
@@ -57,19 +55,32 @@ script = ExtResource("4_8c0lf")
 
 [node name="EnergyBarContainer" type="HBoxContainer" parent="UI" unique_id=1634586027]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="EnergyBar" type="ProgressBar" parent="UI/EnergyBarContainer" unique_id=1109857530]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EnergyBarContainer" unique_id=1403169201]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+
+[node name="Label" type="Label" parent="UI/EnergyBarContainer/VBoxContainer" unique_id=1527771647]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_ha31o")
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_qxfql")
+
+[node name="EnergyBar" type="ProgressBar" parent="UI/EnergyBarContainer/VBoxContainer" unique_id=1109857530]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -111,22 +122,26 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/Pause/HBoxContainer/VBoxContainer" unique_id=2123563207]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ha31o")
 text = "Pause"
 horizontal_alignment = 1
 
 [node name="BResume" type="Button" parent="UI/Pause/HBoxContainer/VBoxContainer" unique_id=1364589718]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_ha31o")
 text = "Resume"
 
 [node name="BMainM" type="Button" parent="UI/Pause/HBoxContainer/VBoxContainer" unique_id=807335636]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_ha31o")
 text = "Main Menu"
 
 [node name="BQuit" type="Button" parent="UI/Pause/HBoxContainer/VBoxContainer" unique_id=800992438]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_ha31o")
 text = "Quit"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1130574555]
@@ -154,7 +169,7 @@ surface_material_override/0 = ExtResource("2_wqkje")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="Pine" parent="Trees" unique_id=1002661416 instance=ExtResource("6_8c0lf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12790012, 4.000001, -3.0293345)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13160944, 4.007205, -3.0344214)
 
 [node name="Pine2" parent="Trees" unique_id=724364540 instance=ExtResource("6_8c0lf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7208486, 4.000001, 6.731152)
@@ -266,6 +281,15 @@ transform = Transform3D(-0.08593858, 0, -0.99630046, 0, 1, 0, 0.99630046, 0, -0.
 [node name="Grass32" parent="Grasses" unique_id=1805325355 instance=ExtResource("6_0f350")]
 transform = Transform3D(-0.08593858, 0, -0.99630046, 0, 1, 0, 0.99630046, 0, -0.08593858, -0.7434764, 4.0099115, -14.508079)
 
+[node name="Grass50" parent="Grasses" unique_id=181866519 instance=ExtResource("6_0f350")]
+transform = Transform3D(-0.7085368, 0, -0.70567375, 0, 1, 0, 0.70567375, 0, -0.7085368, 10.606768, 4.0099115, -6.890711)
+
+[node name="Grass51" parent="Grasses" unique_id=557779646 instance=ExtResource("6_0f350")]
+transform = Transform3D(-0.7085368, 0, -0.70567375, 0, 1, 0, 0.70567375, 0, -0.7085368, 4.9227076, 4.0099115, -9.930979)
+
+[node name="Grass52" parent="Grasses" unique_id=1986384273 instance=ExtResource("6_0f350")]
+transform = Transform3D(-0.7085368, 0, -0.70567375, 0, 1, 0, 0.70567375, 0, -0.7085368, 7.8603754, 4.0099115, -10.730719)
+
 [node name="Grass9" parent="Grasses" unique_id=81775050 instance=ExtResource("6_0f350")]
 transform = Transform3D(0.68266183, 0, 0.7307344, 0, 1, 0, -0.7307344, 0, 0.68266183, 3.4135847, 4.0099115, -1.278902)
 
@@ -328,19 +352,6 @@ transform = Transform3D(0.5784557, 0, -0.8157138, 0, 1, 0, 0.8157138, 0, 0.57845
 
 [node name="Grass46" parent="Grasses" unique_id=338438352 instance=ExtResource("6_0f350")]
 transform = Transform3D(0.5784557, 0, -0.8157138, 0, 1, 0, 0.8157138, 0, 0.5784557, -8.826735, 4.0099106, 2.0416784)
-
-[node name="Interactable" type="StaticBody3D" parent="." unique_id=732951138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-script = ExtResource("7_8c0lf")
-metadata/_custom_type_script = "uid://k08lpf51ow3s"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=838752555]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
-shape = SubResource("BoxShape3D_0f350")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable" unique_id=490298340]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
-mesh = SubResource("BoxMesh_8c0lf")
 
 [node name="TrashSpawner" type="Node3D" parent="." unique_id=1850962870 node_paths=PackedStringArray("trash")]
 unique_name_in_owner = true
@@ -427,6 +438,9 @@ shape = SubResource("BoxShape3D_oqgf2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrashBorder/StaticBody3D2" unique_id=873230116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39379883, -1.0144048, 0)
 shape = SubResource("BoxShape3D_ha31o")
+
+[node name="GachaContainer" parent="." unique_id=1590606973 instance=ExtResource("13_pa6b8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="button_down" from="UI/Pause/HBoxContainer/VBoxContainer/BResume" to="UI" method="_pause"]
 [connection signal="button_down" from="UI/Pause/HBoxContainer/VBoxContainer/BMainM" to="UI" method="_main_menu"]

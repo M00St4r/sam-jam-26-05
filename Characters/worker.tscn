@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://31twjiynd6pj" path="res://Import/move.res" id="5_r0ip0"]
 [ext_resource type="Shader" uid="uid://cc0g80k5dny4a" path="res://lvl_up.gdshader" id="6_p0wxe"]
 [ext_resource type="Texture2D" uid="uid://c166tyqtbft" path="res://Import/Levelup Arrow.png" id="7_p0wxe"]
+[ext_resource type="FontFile" uid="uid://ced7lo0mr7vc4" path="res://Import/Pix32.ttf" id="8_iysip"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vofx3"]
 points = PackedVector3Array(0.95105785, 0.42615172, 0.30892718, 0.8505153, 0.11649205, 5.9604645e-08, 0.95105785, 0.42615172, -0.30912286, 0.8942699, 0.77741706, 5.9604645e-08, 0.68815774, 0.8462017, 0.49980426, 0.5876152, 0.42615172, 0.8089272, 0.7235338, 0.15423343, 0.5256461, 0.42525762, 0.002108613, 0.30892718, 0.42525762, 0.002108613, -0.30912286, 0.7235338, 0.15423343, -0.5258417, 0.5876152, 0.42615172, -0.80912286, 0.68815774, 0.8462017, -0.4999999, 0.52561396, 1.1509666, 5.9604645e-08, 0.16235751, 1.1509666, 0.49980426, 0.27630574, 0.77741706, 0.85062647, 0, 0.42615172, 1, 0.26271385, 0.11649205, 0.8089272, -0.16254377, 0.002108613, 0.49980426, 0, -0.015924811, 5.9604645e-08, -0.16254377, 0.002108613, -0.4999999, 0.26271385, 0.11649205, -0.80912286, 0, 0.42615172, -0.9999999, 0.27630574, 0.77741706, -0.85082215, 0.16235751, 1.1509666, -0.4999999, 0, 1.3, 5.9604645e-08, -0.2629001, 0.8462017, 0.8089272, -0.4254439, 1.1509666, 0.30892718, -0.58780146, 0.42615172, 0.8089272, -0.276492, 0.15423343, 0.85062647, -0.68834394, 0.11649205, 0.49980426, -0.5258002, 0.002108613, 5.9604645e-08, -0.68834394, 0.11649205, -0.4999999, -0.276492, 0.15423343, -0.85082215, -0.58780146, 0.42615172, -0.80912286, -0.2629001, 0.8462017, -0.80912286, -0.4254439, 1.1509666, -0.30912286, -0.72372, 0.77741706, 0.5256461, -0.8507015, 0.8462017, 5.9604645e-08, -0.95105785, 0.42615172, 0.30892718, -0.89445615, 0.15423343, 5.9604645e-08, -0.95105785, 0.42615172, -0.30912286, -0.72372, 0.77741706, -0.5258417)
@@ -46,7 +47,8 @@ bind/1/bone = -1
 bind/1/pose = Transform3D(7.54979e-08, 0, -1, 4.30333e-22, 1, -5.6999333e-15, 1, 0, 7.54979e-08, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cmrb"]
-albedo_color = Color(0, 0.4509804, 1, 1)
+transparency = 1
+albedo_color = Color(0, 0.4509804, 1, 0.43529412)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pnhnk"]
 _data = {
@@ -99,19 +101,35 @@ shader_parameter/amplitude = 0.25
 shader_parameter/frequency = 2.0
 shader_parameter/speed = 1.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_p0wxe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iysip"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3882353, 1, 0.5921569, 0.4745098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p0wxe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76ovd"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.2627451, 1, 0.22352941)
+
 [node name="Worker" type="StaticBody3D" unique_id=1388022637 groups=["NPC"]]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_7kbl1")
+normal_color = Color(0, 0.4509804, 1, 0.49019608)
+energized_color = Color(0, 1, 0.7607843, 0.49019608)
 
-[node name="WorkerCollider" type="CollisionShape3D" parent="." unique_id=573251023 groups=["NPC"]]
+[node name="WorkerCollider" type="CollisionShape3D" parent="." unique_id=573251023]
 unique_name_in_owner = true
 shape = SubResource("ConvexPolygonShape3D_vofx3")
 
-[node name="Armature" type="Node3D" parent="." unique_id=598037835 groups=["NPC"]]
+[node name="Armature" type="Node3D" parent="." unique_id=598037835]
 unique_name_in_owner = true
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=56083602 groups=["NPC"]]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=56083602]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1.1920929e-07, -5.9604645e-08, 1, 1, -1.1920929e-07, 5.9604645e-08, 5.9604645e-08, 1, 0, 0, 0, -1)
@@ -127,31 +145,55 @@ bones/1/position = Vector3(0, 1, 0)
 bones/1/rotation = Quaternion(-2.5121479e-15, -5.3385083e-08, -0.70710677, 0.70710677)
 bones/1/scale = Vector3(1, 1, 1)
 
-[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1288941211 groups=["NPC"]]
+[node name="Icosphere" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1288941211]
 unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_00k4y")
 skin = SubResource("Skin_3a44l")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cmrb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=829194734 groups=["NPC"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=829194734]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_pnhnk")
 
-[node name="WorkerArea" type="Area3D" parent="." unique_id=959528825 groups=["NPC"]]
+[node name="WorkerArea" type="Area3D" parent="." unique_id=959528825]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5380461, 0)
 collision_layer = 6
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorkerArea" unique_id=1026259700 groups=["NPC"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorkerArea" unique_id=1026259700]
 shape = SubResource("SphereShape3D_24uko")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1502388068]
 unique_name_in_owner = true
 target_position = Vector3(0, -100, 0)
 
-[node name="Plane" type="MeshInstance3D" parent="." unique_id=1419907186]
+[node name="LevelUpIndicator" type="MeshInstance3D" parent="." unique_id=1419907186]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("ArrayMesh_3jvrb")
 surface_material_override/0 = SubResource("ShaderMaterial_p0wxe")
+
+[node name="EnergyTank" type="Node3D" parent="." unique_id=1875072432]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnergyTank" unique_id=1095131507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_p0wxe")
+surface_material_override/0 = SubResource("StandardMaterial3D_iysip")
+
+[node name="LevelText" type="Label3D" parent="." unique_id=30587609]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+pixel_size = 0.01
+billboard = 1
+text = "0"
+font = ExtResource("8_iysip")
+
+[node name="AreaVis" type="MeshInstance3D" parent="." unique_id=525524785]
+unique_name_in_owner = true
+transform = Transform3D(4.5, 0, 0, 0, 0.055, 0, 0, 0, 4.5, 0, 0, 0)
+mesh = SubResource("CylinderMesh_p0wxe")
+surface_material_override/0 = SubResource("StandardMaterial3D_76ovd")
