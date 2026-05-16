@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://4xhrvtqli2sh" path="res://Textures/Environment/GroundTex.png" id="3_bowv3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lhwi"]
+shading_mode = 0
+albedo_color = Color(1.6197081, 1.6197081, 1.6197081, 1)
 albedo_texture = ExtResource("3_bowv3")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(40, 40, 40)
@@ -15,7 +17,7 @@ data = PackedVector3Array(-15.9091, 4, 6.8178, -11.3637, 4, 2.2725, -11.3637, 4,
 
 [node name="Island" unique_id=1470059946 groups=["World"] instance=ExtResource("1_c5a2m")]
 
-[node name="Plane" parent="." index="0" unique_id=1861398838 groups=["World"]]
+[node name="Plane" parent="." index="0" unique_id=292312758 groups=["World"]]
 surface_material_override/0 = ExtResource("2_bowv3")
 surface_material_override/1 = SubResource("StandardMaterial3D_2lhwi")
 

@@ -4,8 +4,7 @@
 
 [resource]
 shading_mode = 0
-diffuse_mode = 3
-albedo_color = Color(0.5176471, 0.69411767, 0.4745098, 1)
+albedo_color = Color(0.6947431, 0.92578864, 0.63826525, 1)
 albedo_texture = ExtResource("1_cstb2")
 uv1_scale = Vector3(20, 20, 20)
 texture_filter = 2
