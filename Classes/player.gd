@@ -87,7 +87,6 @@ func _process(delta: float) -> void:
 			global_position = global_position + transform.basis.z * 2
 			var worker = load("res://Characters/worker.tscn")
 			var worker_instance = worker.instantiate()
-			# Add the instance to the current node (or any parent node)
 			get_parent().add_child(worker_instance)
 			worker_instance.global_position = worker_spawn_pos
 			
@@ -144,8 +143,10 @@ func _process(delta: float) -> void:
 		
 func update_interact_hints():
 	update_overlap()
+	
 	if len(bodies) > 0:
 		var body = _get_closest_node(bodies)
+		
 		if body is Trash:
 			interact_hints = "LMouse to decompose Trash"
 		if body is Worker:
@@ -154,10 +155,12 @@ func update_interact_hints():
 			elif body.stored_energy > 0:
 				interact_hints = "F to collect Energy"
 		if body is GachaMachine:
-			interact_hints = "F to deposit 10 energy"
+			interact_hints = "F to deposit 25 energy"
 		
 		#if body is not GachaMachine or not Worker or not Trash:
 			#interact_hints = ""
+	elif energy > energy_required_for_split:
+		interact_hints = "Q to Split"
 	else:
 		interact_hints = ""
 	
@@ -214,7 +217,6 @@ func get_energy() -> float:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
-		# Prevent the camera from rotating too far up or down.
 		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
 		_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
 

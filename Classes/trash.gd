@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name Trash
 
 @export var hp = 100
-@export var stored_energy: float = 5
+@export var stored_energy: float = 25
 @export var speed: float = 5
 @export var difficulty_gain: float = 0.1
 var spawn_dist: float = 40
@@ -26,7 +26,6 @@ func _ready() -> void:
 	var path = TrashTypes.trash_type_paths[randi_range(0,len(TrashTypes.trash_type_paths)-1)]
 	var trash_scene = load(path)
 	var trash_scene_instance = trash_scene.instantiate()
-	# Add the instance to the current node (or any parent node)
 	add_child(trash_scene_instance)
 	trash_scene_instance.position = Vector3.ZERO
 	

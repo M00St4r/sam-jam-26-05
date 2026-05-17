@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://6urexnl2pfkc"]
 
-[ext_resource type="Script" uid="uid://blbdgqjej3gom" path="res://Characters/camera_rig.gd" id="1_k84ui"]
 [ext_resource type="Script" uid="uid://cc3ec5deuqfrb" path="res://Classes/player.gd" id="1_tcriy"]
 [ext_resource type="Animation" uid="uid://ybqa6he4e1wh" path="res://Import/idle.res" id="3_ffjio"]
 [ext_resource type="Animation" uid="uid://0merwsmhm6ue" path="res://Import/jump.res" id="4_wbvw3"]
@@ -83,7 +82,6 @@ spring_length = 5.0
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=708851439 groups=["Player"]]
 unique_name_in_owner = true
 current = true
-script = ExtResource("1_k84ui")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218373379 groups=["Player"]]
 shape = SubResource("ConvexPolygonShape3D_tcriy")

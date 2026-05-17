@@ -12,9 +12,9 @@ var result
 
 func interact():
 	var player = get_tree().get_first_node_in_group("Player")
-	if player.get_energy() >= 10:
-		player.add_energy(-10)
-		add_energy(10)
+	if player.get_energy() >= 25:
+		player.add_energy(-25)
+		add_energy(25)
 
 func add_energy(_amount:float):
 	stored_energy += _amount

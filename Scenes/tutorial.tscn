@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dgxd754h8h6d4"]
+
+[ext_resource type="Script" uid="uid://bjbdmv585w08t" path="res://Scenes/tutorial.gd" id="1_omtrn"]
+[ext_resource type="Texture2D" uid="uid://bu8rkoay65s5" path="res://TutorialImages/04.tres" id="2_i6t4g"]
+[ext_resource type="FontFile" uid="uid://ced7lo0mr7vc4" path="res://Import/Pix32.ttf" id="2_omtrn"]
+
+[node name="Tutorial" type="Control" unique_id=1997992170]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_omtrn")
+
+[node name="Control" type="Control" parent="." unique_id=362198857]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=728231223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer" unique_id=990212661]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_i6t4g")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=659481627]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_omtrn")
+text = "Decompose trash to Gain Energy"
+
+[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=1708393247]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_omtrn")
+theme_override_font_sizes/font_size = 10
+text = "Okay"
+
+[connection signal="button_down" from="Control/VBoxContainer/Button" to="." method="_on_button_button_down"]

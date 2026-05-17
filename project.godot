@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="SamJam_26_05"
+config/name="Decomposer"
 run/main_scene="uid://dgrdo252pu7ne"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cexp10yrq23la"
 
 [autoload]
 

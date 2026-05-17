@@ -41,7 +41,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xhh6f")
 theme_override_font_sizes/font_size = 25
-text = "Odd Place"
+text = "Decomposer"
 horizontal_alignment = 1
 
 [node name="BStart" type="Button" parent="Control/HBoxContainer/VBoxContainer" unique_id=1368438544]
